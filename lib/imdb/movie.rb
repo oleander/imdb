@@ -74,7 +74,7 @@ module Imdb
     end
     
     def votes
-      document.at("#tn15rating .tn15more").gsub(/[^\d+]/, "").to_i rescue nil
+      document.at("a.tn15more").gsub(/[^\d+]/, "").to_i rescue nil
     end
     
     # Returns a string containing the tagline

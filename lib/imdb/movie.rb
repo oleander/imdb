@@ -73,6 +73,10 @@ module Imdb
       document.at(".starbar-meta b").innerHTML.strip.imdb_unescape_html.split('/').first.to_f rescue nil
     end
     
+    def votes
+      document.at("#tn15rating .tn15more").gsub(/[^\d+]/, "").to_i rescue nil
+    end
+    
     # Returns a string containing the tagline
     def tagline
       document.search("h5[text()='Tagline:'] ~ div").first.innerHTML.gsub(/<.+>.+<\/.+>/, '').strip.imdb_unescape_html rescue nil

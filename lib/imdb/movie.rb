@@ -68,6 +68,10 @@ module Imdb
       src = document.at('img#primary-poster')['src'] rescue nil
     end
     
+    def company
+      document.at(':nth-child(38) a:nth-child(1)').innerHTML rescue nil
+    end
+    
     # Returns a float containing the average user rating
     def rating
       document.at(".starbar-meta b").innerHTML.strip.imdb_unescape_html.split('/').first.to_f rescue nil

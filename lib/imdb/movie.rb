@@ -73,6 +73,10 @@ module Imdb
       doc.at_css(':nth-child(38) a:nth-child(1)').content rescue nil
     end
     
+    def trailer
+      doc.at_css('a:nth-child(2) .video').attr('href') rescue nil
+    end
+    
     # Returns a float containing the average user rating
     def rating
       document.at(".starbar-meta b").innerHTML.strip.imdb_unescape_html.split('/').first.to_f rescue nil

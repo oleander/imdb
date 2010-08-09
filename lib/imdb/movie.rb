@@ -1,3 +1,4 @@
+require 'nokogiri'
 module Imdb
   
   # Represents a Movie on IMDB.com
@@ -69,7 +70,7 @@ module Imdb
     end
     
     def company
-      document.at(':nth-child(38) a:nth-child(1)').innerHTML rescue nil
+      doc.at_css(':nth-child(38) a:nth-child(1)').content
     end
     
     # Returns a float containing the average user rating
@@ -115,6 +116,11 @@ module Imdb
     # Returns a new Hpricot document for parsing.
     def document
       @document ||= Hpricot(Imdb::Movie.find_by_id(@id))
+    end
+    
+    # Returns a new Nokogiri document for parsing.
+    def doc
+      @doc ||= Nokogiri::HTML(Imdb::Movie.find_by_id(@id))
     end
     
     # Use HTTParty to fetch the raw HTML for this movie.

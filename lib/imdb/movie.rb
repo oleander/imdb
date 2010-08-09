@@ -74,7 +74,7 @@ module Imdb
     end
     
     def trailer
-      doc.at_css('a:nth-child(2) .video').attr('href') rescue nil
+      doc.at_css('a:nth-child(2) .video').attr('src') rescue nil
     end
     
     # Returns a float containing the average user rating

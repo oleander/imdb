@@ -70,7 +70,7 @@ module Imdb
     end
     
     def company
-      doc.at_css(':nth-child(38) a:nth-child(1)').content
+      doc.at_css(':nth-child(38) a:nth-child(1)').content rescue nil
     end
     
     # Returns a float containing the average user rating
@@ -85,6 +85,10 @@ module Imdb
     # Returns a string containing the tagline
     def tagline
       document.search("h5[text()='Tagline:'] ~ div").first.innerHTML.gsub(/<.+>.+<\/.+>/, '').strip.imdb_unescape_html rescue nil
+    end
+    
+    def languages
+      doc.css(':nth-child(32) a').map{|c| c.content } rescue []
     end
     
     # Returns a string containing the mpaa rating and reason for rating

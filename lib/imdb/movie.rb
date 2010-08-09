@@ -92,10 +92,6 @@ module Imdb
       document.search("h5[text()='Tagline:'] ~ div").first.innerHTML.gsub(/<.+>.+<\/.+>/, '').strip.imdb_unescape_html rescue nil
     end
     
-    def languages
-      doc.css(':nth-child(32) a').map{|c| c.content } rescue []
-    end
-    
     # Returns a string containing the mpaa rating and reason for rating
     def mpaa_rating
       document.search("h5[text()='MPAA:'] ~ div").first.innerHTML.strip.imdb_unescape_html rescue nil

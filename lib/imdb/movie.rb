@@ -74,7 +74,8 @@ module Imdb
     end
     
     def trailer
-      "http://www.imdb.com/".concat(doc.at_css('.media_strip_thumbs .media_strip_thumb:first a').attr('href')) rescue nil
+      data = doc.at_css('a:nth-child(2) .video').attr('viconst') rescue nil
+      data.nil? or !data.match(/vi(\d+)/) ? nil : "http://www.imdb.com/video/imdb/".concat data
     end
     
     # Returns a float containing the average user rating

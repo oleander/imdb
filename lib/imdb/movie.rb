@@ -130,7 +130,7 @@ module Imdb
     
     # Use HTTParty to fetch the raw HTML for this movie.
     def self.find_by_id(imdb_id)
-      open("http://www.imdb.com/title/tt#{imdb_id}/")
+      @data ||= open("http://www.imdb.com/title/tt#{imdb_id}/") rescue ""
     end
     
     # Convenience method for search
